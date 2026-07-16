@@ -1,0 +1,15 @@
+description: "Context-aware PostCSS configuration presets."
+plugins:
+    - "jekyll-sitemap"
+    - "jekyll-seo-tag"
+    - "jekyll-paginate"
+    - "jekyll-feed"
+    - "jekyll-archives"
+    - "jekyll-language-plugin"
+    - "jekyll-algolia"
+    - "jekyll-mentions"
+    - "jekyll-admin"
+    - "jekyll-loading-lazy"
+remote_theme: "pages-themes/hacker@v0.2.0"
+title: "PostCSS Config Nick2bad4u"
+url: "https://nick2bad4u.github.io/postcss-config-nick2bad4u" # the base hostname & protocol for your site
