@@ -6,7 +6,7 @@ declare module "postcss-assets" {
         readonly relative?: boolean;
     }
 
-    const postcssAssets: import("postcss").PluginCreator<PostcssAssetsOptions>;
+    const postcssAssets: PostcssVendorPluginCreator<PostcssAssetsOptions>;
     export default postcssAssets;
 }
 
@@ -16,11 +16,11 @@ declare module "postcss-normalize" {
         readonly forceImport?: boolean | string;
     }
 
-    const postcssNormalize: import("postcss").PluginCreator<PostcssNormalizeOptions>;
+    const postcssNormalize: PostcssVendorPluginCreator<PostcssNormalizeOptions>;
     export default postcssNormalize;
 }
 
 declare module "postcss-round-subpixels" {
-    const roundSubpixels: import("postcss").PluginCreator<Record<never, never>>;
+    const roundSubpixels: PostcssVendorPluginCreator<Record<never, never>>;
     export default roundSubpixels;
 }

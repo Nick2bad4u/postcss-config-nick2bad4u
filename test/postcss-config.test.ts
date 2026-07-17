@@ -35,10 +35,12 @@ const marker = (name: string): AcceptedPlugin => ({
 
 describe(createPostcssConfig, () => {
     it("keeps the base pipeline ordered and portable", () => {
+        expect.hasAssertions();
+
         const projectRoot = path.resolve("test/fixtures/example-project");
         const config = createBaseConfig({ projectRoot });
 
-        expect(pluginNames(config.plugins)).toEqual([
+        expect(pluginNames(config.plugins)).toStrictEqual([
             "postcss-import",
             "postcss-logical",
             "postcss-flexbugs-fixes",
@@ -47,6 +49,8 @@ describe(createPostcssConfig, () => {
     });
 
     it("adds Tailwind only for Tailwind-aware profiles", () => {
+        expect.hasAssertions();
+
         const baseNames = pluginNames(createBaseConfig().plugins);
         const tailwindNames = pluginNames(createTailwindConfig().plugins);
 
@@ -58,6 +62,8 @@ describe(createPostcssConfig, () => {
     });
 
     it("adds asset handling without assuming the package working directory", () => {
+        expect.hasAssertions();
+
         const names = pluginNames(
             createAssetsConfig({ projectRoot: "test/fixtures/application" })
                 .plugins
@@ -68,6 +74,8 @@ describe(createPostcssConfig, () => {
     });
 
     it("keeps risky optimizers opt-in and cssnano at the end", () => {
+        expect.hasAssertions();
+
         const safeNames = pluginNames(createProductionConfig().plugins);
         const aggressiveNames = pluginNames(
             createProductionConfig({
@@ -80,7 +88,7 @@ describe(createPostcssConfig, () => {
         expect(safeNames).not.toContain("postcss-combine-duplicated-selectors");
         expect(safeNames).not.toContain("postcss-sort-media-queries");
         expect(safeNames.at(-1)).toBe("cssnano");
-        expect(aggressiveNames).toEqual(
+        expect(aggressiveNames).toStrictEqual(
             expect.arrayContaining([
                 "postcss-combine-duplicated-selectors",
                 "postcss-sort-media-queries",
@@ -90,6 +98,8 @@ describe(createPostcssConfig, () => {
     });
 
     it("selects full development and production behavior from context", () => {
+        expect.hasAssertions();
+
         const developmentNames = pluginNames(
             createFullConfig({}, { env: "development" }).plugins
         );
@@ -104,6 +114,8 @@ describe(createPostcssConfig, () => {
     });
 
     it("supports explicit semantic insertion points", () => {
+        expect.hasAssertions();
+
         const names = pluginNames(
             createPostcssConfig({
                 additionalPlugins: {
@@ -123,6 +135,8 @@ describe(createPostcssConfig, () => {
     });
 
     it("runs as a real PostCSS configuration", async () => {
+        expect.hasAssertions();
+
         const result = await postcss(createBaseConfig().plugins).process(
             ".example { user-select: none; }",
             { from: undefined }
@@ -133,6 +147,8 @@ describe(createPostcssConfig, () => {
     });
 
     it("rejects unknown runtime profiles", () => {
+        expect.hasAssertions();
+
         expect(() =>
             createPostcssConfig({
                 profile: "unsupported" as never,
